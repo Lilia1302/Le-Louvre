@@ -8,6 +8,8 @@ public class Artiste {
     private String image;
     private String telNumber;
     private String address;
+    private String email;
+    private String password;
 
     public Artiste (String lastName, String firstName, String username, String image, String telNumber, String address){
         this.lastName = lastName;
