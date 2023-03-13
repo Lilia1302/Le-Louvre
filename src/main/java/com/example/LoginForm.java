@@ -1,106 +1,133 @@
 package com.example;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 public class LoginForm extends JFrame {
-    final private Font mainFont = new Font("Segoe print", Font.BOLD, 18);
+
+    private final Font mainFont = new Font("Avenir", Font.BOLD, 18);
     JTextField tfEmail;
     JPasswordField pfPassword;
+
     public void initialize() {
 
-        /*Create the forme */
-        JLabel lbLoginForm = new JLabel("Login Form", SwingConstants.CENTER);
+        /*Create the form */
+        JLabel lbLoginForm = new JLabel("Login", SwingConstants.CENTER);
+        lbLoginForm.setBorder(new EmptyBorder(10, 0, 10, 0));
         lbLoginForm.setFont(mainFont);
 
-        JLabel lbLoginEmail = new JLabel("Email");
+        JLabel lbLoginEmail = new JLabel("Email", SwingConstants.CENTER);
         lbLoginEmail.setFont(mainFont);
+
         tfEmail = new JTextField();
         tfEmail.setFont(mainFont);
 
-        JLabel lbLoginPassword = new JLabel("Password");
+        JLabel lbLoginPassword = new JLabel("Password", SwingConstants.CENTER);
         lbLoginPassword.setFont(mainFont);
+
         pfPassword = new JPasswordField();
         pfPassword.setFont(mainFont);
 
         JPanel formPanel = new JPanel();
-        formPanel.setLayout(new GridLayout(0,1,10,10));
+        lbLoginForm.setFont(new Font("Trebuchet MS", Font.BOLD, 40));
+
+        formPanel.setLayout(new GridLayout(0,1,0,0));
+        formPanel.setBorder(BorderFactory.createEmptyBorder(30, 50, 30, 50));
         formPanel.add(lbLoginForm);
         formPanel.add(lbLoginEmail);
         formPanel.add(tfEmail);
         formPanel.add(lbLoginPassword);
         formPanel.add(pfPassword);
 
-        /*Create the buttons */
+        /*Create the button */
         JButton btnLogin = new JButton("Login");
         btnLogin.setFont(mainFont);
-        btnLogin.addActionListener(new ActionListener(){
+        btnLogin.setPreferredSize(new Dimension(400,80));
 
+        btnLogin.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
                 String email = tfEmail.getText();
                 String password = String.valueOf(pfPassword.getPassword());
-                Artiste artiste = getAuthentificatedUser(email,password);
+
+                Artiste artiste = getAuthentificatedUser(email, password);
 
                 if (artiste != null){
                     MainFrame mainFrame = new MainFrame();
-                    mainFrame.init();
+                    mainFrame.init(artiste);
+                    dispose();
+                }
+                else {
+                    JOptionPane.showMessageDialog(LoginForm.this,
+                    "Invalid email or password",
+                    "Try again",
+                    JOptionPane.ERROR_MESSAGE);
                 }
             }
-            
         });
 
+        JPanel buttonsPanel = new JPanel();
+        buttonsPanel.setLayout(new GridLayout(1, 2, 10, 0));
+        buttonsPanel.setBorder(BorderFactory.createEmptyBorder(30, 50, 30, 50));
+        buttonsPanel.add(btnLogin);
 
         add(formPanel, BorderLayout.NORTH);
+        add(buttonsPanel, BorderLayout.SOUTH);
 
-
-        setTitle("LogIn Form");
-        setSize(400, 500);
+        setTitle("Login");
+        setSize(480, 720);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new Dimension(350, 450));
+        setMinimumSize(new Dimension(400, 600));
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
-
     private Artiste getAuthentificatedUser(String email, String password){
         Artiste artiste = null;
-        final String DB_URL ="jdbc:mysql://localhost/Le_Louvre?serverTimeZone=UTC";
+        final String DB_URL ="jdbc:mysql://localhost:3306/Le_Louvre";
         final String USERNAME = "root";
-        final String PASSWORD = "";
+        final String PASSWORD = "root";
          
         try {
-            Connection conn =  DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            System.out.println("coucou c moi!!");
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            // Connected to database successfully...
+            System.out.println("gg!!");
             String sql = "SELECT * FROM users WHERE email=? AND password=?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, email);
             preparedStatement.setString(2, password);
-
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                user = new User();
-                user.name = resultSet.getString("name");
-                user.email = resultSet.getString("email");
-                user.phone = resultSet.getString("phone");
-                user.address = resultSet.getString("address");
-                user.password = resultSet.getString("password");
+                String firstName = resultSet.getString("firstName");
+                String lastName = resultSet.getString("lastName");
+                String username = resultSet.getString("username");
+                String image = resultSet.getString("image");
+                email = resultSet.getString("email");
+                String address = resultSet.getString("email");
+                String telNumber = resultSet.getString("telNumber");
+                password = resultSet.getString("password");
+                artiste = new Artiste(firstName, lastName, username, image, email, telNumber, address, password);
             }
-
             preparedStatement.close();
             conn.close();
 
-        }catch(Exception e){
+        } catch(Exception e){
             System.out.println("Database connexion failed!");
         }
         return artiste;
         }
 
-    }
+        public static void main(String[] args) {
     
+            LoginForm loginForm = new LoginForm();
+            loginForm.initialize();
+        }
 
+    }

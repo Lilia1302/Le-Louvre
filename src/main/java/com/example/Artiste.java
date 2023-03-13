@@ -11,13 +11,15 @@ public class Artiste {
     private String email;
     private String password;
 
-    public Artiste (String lastName, String firstName, String username, String image, String telNumber, String address){
+    public Artiste (String lastName, String firstName, String username, String image, String email, String telNumber, String address, String password){
         this.lastName = lastName;
         this.firstName = firstName;
         this.username = username;
         this.image = image;
+        this.email = email;
         this.telNumber = telNumber;
         this.address = address;
+        this.password = password;
     }
 
     public String getLastName() {
@@ -36,11 +38,19 @@ public class Artiste {
         return this.image;
     }
 
+    public String getEmail() {
+        return this.email;
+    }
+
     public String getTelNumber() {
         return this.telNumber;
     }
 
     public String getAddress() {
         return this.address;
+    }
+
+    public String getPassword() {
+        return this.password;
     }
 }
