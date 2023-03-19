@@ -75,19 +75,19 @@ public class LoginForm extends JFrame {
         });
 
         JLabel lbRedirectionSignIn = new JLabel("You don't have an account ?");
-        JButton btnRedirectionSignIn = new JButton("Sign up");
+        JButton btnRedirectionSignIn = new JButton("Sign in");
         btnRedirectionSignIn.setPreferredSize(new Dimension(100,50));
 
-        btnRedirectionSignIn.addActionListener(new ActionListener() {
+
+        btnRedirectionSignIn.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                // rediriger vers la page d'inscription
-                // ici, on utilise JOptionPane.showInputDialog() comme exemple
-                String newEmail = JOptionPane.showInputDialog("Enter your username:");
-                String newPassword = JOptionPane.showInputDialog("Enter your password:");
-                System.out.println("New user registered: " + newEmail + ", " + newPassword);
+                new LoginForm().setVisible(false);
+                SignupForm signupForm = new SignupForm();
+                signupForm.setVisible(true);
             }
         });
+
 
         JPanel buttonsPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -101,15 +101,15 @@ public class LoginForm extends JFrame {
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.gridwidth = 1;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.insets = new Insets(30, 50, 50, 0);
+        gbc.fill = GridBagConstraints.EAST;
+        gbc.insets = new Insets(50, 40, 20, 0);
         buttonsPanel.add(lbRedirectionSignIn, gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.gridwidth = 1;
-        gbc.fill = GridBagConstraints.NONE;
-        gbc.insets = new Insets(30, 0, 50, 50);
+        gbc.fill = GridBagConstraints.WEST;
+        gbc.insets = new Insets(50, 0, 20, 40);
         buttonsPanel.add(btnRedirectionSignIn, gbc);
 
         add(formPanel, BorderLayout.NORTH);

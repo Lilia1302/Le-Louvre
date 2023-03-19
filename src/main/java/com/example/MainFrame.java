@@ -10,8 +10,8 @@ public class MainFrame extends JFrame {
         infoPanel.setLayout(new GridLayout(0, 2, 5, 5));
         infoPanel.setBorder(BorderFactory.createEmptyBorder(30, 50, 30, 50));
 
-        infoPanel.add(new JLabel());
-        infoPanel.add(new JLabel(artiste.getImage()));
+        //infoPanel.add(new JLabel());
+        //infoPanel.add(new JLabel(artiste.getImage()));
         infoPanel.add(new JLabel("First name"));
         infoPanel.add(new JLabel(artiste.getFirstName()));
         infoPanel.add(new JLabel("Last name"));
