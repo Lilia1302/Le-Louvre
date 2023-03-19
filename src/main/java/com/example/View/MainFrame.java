@@ -1,7 +1,9 @@
-package com.example;
+package com.example.View;
 
 import java.awt.*;
 import javax.swing.*;
+
+import com.example.Model.Artiste;
 
 public class MainFrame extends JFrame {
     public void init (Artiste artiste){
