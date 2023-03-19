@@ -74,10 +74,43 @@ public class LoginForm extends JFrame {
             }
         });
 
-        JPanel buttonsPanel = new JPanel();
-        buttonsPanel.setLayout(new GridLayout(1, 2, 10, 0));
-        buttonsPanel.setBorder(BorderFactory.createEmptyBorder(30, 50, 30, 50));
-        buttonsPanel.add(btnLogin);
+        JLabel lbRedirectionSignIn = new JLabel("You don't have an account ?");
+        JButton btnRedirectionSignIn = new JButton("Sign up");
+        btnRedirectionSignIn.setPreferredSize(new Dimension(100,50));
+
+        btnRedirectionSignIn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // rediriger vers la page d'inscription
+                // ici, on utilise JOptionPane.showInputDialog() comme exemple
+                String newEmail = JOptionPane.showInputDialog("Enter your username:");
+                String newPassword = JOptionPane.showInputDialog("Enter your password:");
+                System.out.println("New user registered: " + newEmail + ", " + newPassword);
+            }
+        });
+
+        JPanel buttonsPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        buttonsPanel.add(btnLogin, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(30, 50, 50, 0);
+        buttonsPanel.add(lbRedirectionSignIn, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.gridwidth = 1;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.insets = new Insets(30, 0, 50, 50);
+        buttonsPanel.add(btnRedirectionSignIn, gbc);
 
         add(formPanel, BorderLayout.NORTH);
         add(buttonsPanel, BorderLayout.SOUTH);
