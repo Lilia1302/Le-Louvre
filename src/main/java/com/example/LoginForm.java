@@ -46,6 +46,9 @@ public class LoginForm extends JFrame {
 
         /*Create the button */
         JButton btnLogin = new JButton("Login");
+        btnLogin.setBackground(Color.orange);
+        btnLogin.setOpaque(true);
+        btnLogin.setBorderPainted(false);
         btnLogin.setFont(mainFont);
         btnLogin.setPreferredSize(new Dimension(400,80));
 
@@ -89,33 +92,35 @@ public class LoginForm extends JFrame {
 
     private Artiste getAuthentificatedUser(String email, String password){
         Artiste artiste = null;
+
         final String DB_URL ="jdbc:mysql://localhost:3306/Le_Louvre";
         final String USERNAME = "root";
         final String PASSWORD = "root";
          
         try {
-            System.out.println("coucou c moi!!");
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
             // Connected to database successfully...
-            System.out.println("gg!!");
-            String sql = "SELECT * FROM users WHERE email=? AND password=?";
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, email);
-            preparedStatement.setString(2, password);
-            ResultSet resultSet = preparedStatement.executeQuery();
+
+            Statement stm = conn.createStatement();
+
+            String sql = "SELECT * FROM Artist WHERE email='"+email+"' AND password='"+password+"'";            
+
+            ResultSet resultSet = stm.executeQuery(sql);
 
             if (resultSet.next()) {
+                JOptionPane.showMessageDialog(null, "Matched Email and Password!");
+
                 String firstName = resultSet.getString("firstName");
                 String lastName = resultSet.getString("lastName");
                 String username = resultSet.getString("username");
                 String image = resultSet.getString("image");
                 email = resultSet.getString("email");
-                String address = resultSet.getString("email");
+                String address = resultSet.getString("address");
                 String telNumber = resultSet.getString("telNumber");
                 password = resultSet.getString("password");
                 artiste = new Artiste(firstName, lastName, username, image, email, telNumber, address, password);
             }
-            preparedStatement.close();
+            stm.close();
             conn.close();
 
         } catch(Exception e){

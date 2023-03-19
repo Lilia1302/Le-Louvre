@@ -9,6 +9,7 @@ public class MainFrame extends JFrame {
         JPanel infoPanel = new JPanel();
         infoPanel.setLayout(new GridLayout(0, 2, 5, 5));
         infoPanel.setBorder(BorderFactory.createEmptyBorder(30, 50, 30, 50));
+
         infoPanel.add(new JLabel());
         infoPanel.add(new JLabel(artiste.getImage()));
         infoPanel.add(new JLabel("First name"));
