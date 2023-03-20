@@ -1,17 +1,20 @@
 package com.example.View;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.*;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import com.example.Model.Artiste;
+import com.example.Model.LoginForm;
 
-public class signupView {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import com.example.Model.SignupForm;
+
+public class signupView extends JFrame {
     
+    protected static final Component SignupForm = null;
     private final Font mainFont = new Font("Avenir", Font.BOLD, 18);
     JTextField tfFirstName;
     JTextField tfLastName;
@@ -101,7 +104,9 @@ public class signupView {
                 String telNumber = tfTelNumber.getText();
                 String address = tfAddress.getText();
 
-                Artiste artiste = createAccount(firstName, lastName, username, image, password, email, address, telNumber);
+                SignupForm suForm = new SignupForm();
+
+                Artiste artiste = suForm.createAccount(firstName, lastName, username, image, password, email, address, telNumber);
 
                 if (artiste != null){
                     MainFrame mainFrame = new MainFrame();
@@ -109,7 +114,7 @@ public class signupView {
                     dispose();
                 }
                 else {
-                    JOptionPane.showMessageDialog(SignupForm.this,
+                    JOptionPane.showMessageDialog(SignupForm,
                     "Invalid email or password",
                     "Try again",
                     JOptionPane.ERROR_MESSAGE);
@@ -150,8 +155,8 @@ public class signupView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new SignupForm().setVisible(false);
-                LoginForm loginForm = new LoginForm();
-                loginForm.setVisible(true);
+                loginView lgView = new loginView();
+                lgView.setVisible(true);
             }
         });
 
@@ -189,57 +194,4 @@ public class signupView {
         setVisible(true);
     }
 
-    private Artiste createAccount(String firstName, String lastName, String username, String image, String password, String email, String address, String telNumber){
-        Artiste artiste = null;
-
-        final String DB_URL ="jdbc:mysql://localhost:3306/Le_Louvre";
-        final String USERNAME = "root";
-        final String PASSWORD = "root";
-         
-        try {
-            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
-
-            Statement stm = conn.createStatement();
-
-            String sql = "INSERT INTO Artist(firstName, lastName, username, image, email, address, telNumber, password) VALUES ('" + firstName + "','" + lastName + "','" + username + "','image','" + email + "','" + address +"','" + telNumber + "','" + password +"')";
-
-            int result = stm.executeUpdate(sql);
-
-			if (result == 1) {
-                JOptionPane.showMessageDialog(null, "Your account was successfully created.");
-			}
-
-            String sql2 = "SELECT * FROM Artist where username='" + username + "'";
-
-            ResultSet resultSet = stm.executeQuery(sql2);
-
-            if (resultSet.next()) {    
-                firstName = resultSet.getString("firstName");
-                lastName = resultSet.getString("lastName");
-                username = resultSet.getString("username");
-                image = resultSet.getString("image");
-                email = resultSet.getString("email");
-                address = resultSet.getString("address");
-                telNumber = resultSet.getString("telNumber");
-                password = resultSet.getString("password");
-                artiste = new Artiste(firstName, lastName, username, image, email, telNumber, address, password);
-            }
-
-            stm.close();
-            conn.close();
-
-        } catch(Exception e){
-            System.out.println("Database connexion failed!");
-            e.printStackTrace();
-        }
-        return artiste;
-    }
-
-    public static void main(String[] args) {
-
-        SignupForm signupForm = new SignupForm();
-        signupForm.initialize();
-    }
-
-}
 }

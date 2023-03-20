@@ -15,17 +15,12 @@ public class LoginForm {
        
          
         try {
-            System.out.println("coucou je me suis rentrée !");
             dbConnection = new DBConnection();
            conn= dbConnection.init(conn);
-           System.out.println("coucou je me suis connecté");
             // Connected to database successfully...
             Statement stm = conn.createStatement();
-            System.out.println("coucou je me suis aprés le statment");
             String sql = "SELECT * FROM artiste WHERE email='"+email+"' AND password='"+password+"'";
-            System.out.println("coucou je me suis aprés le SELECT");
             ResultSet resultSet = stm.executeQuery(sql);
-            System.out.println("coucou je me suis aprés l'execution de la requete");
 
             if (resultSet.next()) {
                 JOptionPane.showMessageDialog(null, "Matched Email and Password!");
