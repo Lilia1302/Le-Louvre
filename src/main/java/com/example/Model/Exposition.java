@@ -37,6 +37,4 @@ public class Exposition {
         return this.visitorsMax;
     }
 
-    
-
 }

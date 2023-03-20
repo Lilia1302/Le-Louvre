@@ -49,21 +49,18 @@ public class loginView extends JFrame {
         /*Create the button */
         JButton btnLogin = new JButton("Login");
         btnLogin.setFont(mainFont);
+        btnLogin.setBackground(Color.orange);
+        btnLogin.setOpaque(true);
+        btnLogin.setBorderPainted(false);
         btnLogin.setPreferredSize(new Dimension(400,80));
 
-<<<<<<< HEAD:src/main/java/com/example/View/loginView.java
-        JPanel buttonsPanel = new JPanel();
-        buttonsPanel.setLayout(new GridLayout(1, 2, 10, 0));
-        buttonsPanel.setBorder(BorderFactory.createEmptyBorder(30, 50, 30, 50));
-        buttonsPanel.add(btnLogin);
-=======
         btnLogin.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 String email = tfEmail.getText();
                 String password = String.valueOf(pfPassword.getPassword());
-
-                Artiste artiste = getAuthentificatedUser(email, password);
+                LoginForm loginForm = new LoginForm();
+                Artiste artiste = loginForm.getAuthentificatedUser(email, password);
 
                 if (artiste != null){
                     MainFrame mainFrame = new MainFrame();
@@ -71,7 +68,7 @@ public class loginView extends JFrame {
                     dispose();
                 }
                 else {
-                    JOptionPane.showMessageDialog(LoginForm.this,
+                    JOptionPane.showMessageDialog(LoginForm,
                     "Invalid email or password",
                     "Try again",
                     JOptionPane.ERROR_MESSAGE);
@@ -116,31 +113,9 @@ public class loginView extends JFrame {
         gbc.fill = GridBagConstraints.NONE;
         gbc.insets = new Insets(30, 0, 50, 50);
         buttonsPanel.add(btnRedirectionSignIn, gbc);
->>>>>>> 13c9f38461a163758ecbb8faa3213c3fbcc058a8:src/main/java/com/example/LoginForm.java
 
         add(formPanel, BorderLayout.NORTH);
         add(buttonsPanel, BorderLayout.SOUTH);
-        btnLogin.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String email = tfEmail.getText();
-                String password = String.valueOf(pfPassword.getPassword());
-                LoginForm loginForm = new LoginForm();
-                Artiste artiste = loginForm.getAuthentificatedUser(email, password);
-
-                if (artiste != null){
-                    MainFrame mainFrame = new MainFrame();
-                    mainFrame.init(artiste);
-                    dispose();
-                }
-                else {
-                    JOptionPane.showMessageDialog(LoginForm,
-                    "Invalid email or password",
-                    "Try again",
-                    JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        });
 
         setTitle("Login");
         setSize(480, 720);
