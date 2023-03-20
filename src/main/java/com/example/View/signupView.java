@@ -5,14 +5,15 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import com.example.Model.Artiste;
-import com.example.Model.LoginForm;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import com.example.Model.SignupForm;
+import com.example.Form.LoginForm;
+import com.example.Form.SignupForm;
+import com.example.View.LoginView;
 
-public class signupView extends JFrame {
+public class SignupView extends JFrame {
     
     protected static final Component SignupForm = null;
     private final Font mainFont = new Font("Avenir", Font.BOLD, 18);
@@ -123,7 +124,7 @@ public class signupView extends JFrame {
         });
 
         JPanel formPanel = new JPanel();
-        lbSignupForm.setFont(new Font("Trebuchet MS", Font.BOLD, 2));
+        lbSignupForm.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
 
         formPanel.setLayout(new GridLayout(0,1,0,0));
         formPanel.setBorder(BorderFactory.createEmptyBorder(30, 50, 30, 50));
@@ -154,9 +155,11 @@ public class signupView extends JFrame {
         btnRedirectionSignIn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new SignupForm().setVisible(false);
-                loginView lgView = new loginView();
-                lgView.setVisible(true);
+                LoginView lgview = new LoginView();
+                lgview.initialize();
+                lgview.setVisible(true);
+                
+
             }
         });
 

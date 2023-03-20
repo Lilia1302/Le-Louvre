@@ -1,9 +1,11 @@
-package com.example.Model;
-
+package com.example.Form;
 
 import java.sql.*;
 import javax.swing.*;
-import com.example.View.signupView;
+
+import com.example.Model.Artiste;
+import com.example.Model.DBConnection;
+import com.example.View.SignupView;
 
 public class SignupForm extends JFrame {
     Connection conn;
@@ -15,7 +17,7 @@ public class SignupForm extends JFrame {
         try {
             dbConnection = new DBConnection();
             conn= dbConnection.init(conn);
-             // Connected to database successfully...
+            // Connected to database successfully...
 
             Statement stm = conn.createStatement();
 
@@ -54,8 +56,7 @@ public class SignupForm extends JFrame {
     }
 
     public static void main(String[] args) {
-
-       signupView suview = new signupView();
+        SignupView suview = new SignupView();
         suview.initialize();
     }
 
