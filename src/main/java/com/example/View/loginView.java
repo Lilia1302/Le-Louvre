@@ -1,21 +1,23 @@
-package com.example;
+package com.example.View;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.*;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-public class LoginForm extends JFrame {
+import com.example.Model.Artiste;
+import com.example.Model.LoginForm;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class loginView extends JFrame {
+    protected static final Component LoginForm = null;
     private final Font mainFont = new Font("Avenir", Font.BOLD, 18);
     JTextField tfEmail;
     JPasswordField pfPassword;
 
-    public void initialize() {
 
+    public void initialize() {
         /*Create the form */
         JLabel lbLoginForm = new JLabel("Login", SwingConstants.CENTER);
         lbLoginForm.setBorder(new EmptyBorder(10, 0, 10, 0));
@@ -46,9 +48,6 @@ public class LoginForm extends JFrame {
 
         /*Create the button */
         JButton btnLogin = new JButton("Login");
-        btnLogin.setBackground(Color.orange);
-        btnLogin.setOpaque(true);
-        btnLogin.setBorderPainted(false);
         btnLogin.setFont(mainFont);
         btnLogin.setPreferredSize(new Dimension(400,80));
 
@@ -57,8 +56,8 @@ public class LoginForm extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String email = tfEmail.getText();
                 String password = String.valueOf(pfPassword.getPassword());
-
-                Artiste artiste = getAuthentificatedUser(email, password);
+                LoginForm loginForm = new LoginForm();
+                Artiste artiste = loginForm.getAuthentificatedUser(email, password);
 
                 if (artiste != null){
                     MainFrame mainFrame = new MainFrame();
@@ -66,7 +65,7 @@ public class LoginForm extends JFrame {
                     dispose();
                 }
                 else {
-                    JOptionPane.showMessageDialog(LoginForm.this,
+                    JOptionPane.showMessageDialog(LoginForm,
                     "Invalid email or password",
                     "Try again",
                     JOptionPane.ERROR_MESSAGE);
@@ -122,50 +121,6 @@ public class LoginForm extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
     }
-
-    private Artiste getAuthentificatedUser(String email, String password){
-        Artiste artiste = null;
-
-        final String DB_URL ="jdbc:mysql://localhost:3306/Le_Louvre";
-        final String USERNAME = "root";
-        final String PASSWORD = "root";
-         
-        try {
-            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
-            // Connected to database successfully...
-
-            Statement stm = conn.createStatement();
-
-            String sql = "SELECT * FROM Artist WHERE email='"+email+"' AND password='"+password+"'";            
-
-            ResultSet resultSet = stm.executeQuery(sql);
-
-            if (resultSet.next()) {
-                JOptionPane.showMessageDialog(null, "Matched Email and Password!");
-
-                String firstName = resultSet.getString("firstName");
-                String lastName = resultSet.getString("lastName");
-                String username = resultSet.getString("username");
-                String image = resultSet.getString("image");
-                email = resultSet.getString("email");
-                String address = resultSet.getString("address");
-                String telNumber = resultSet.getString("telNumber");
-                password = resultSet.getString("password");
-                artiste = new Artiste(firstName, lastName, username, image, email, telNumber, address, password);
-            }
-            stm.close();
-            conn.close();
-
-        } catch(Exception e){
-            System.out.println("Database connexion failed!");
-        }
-        return artiste;
-        }
-
-        public static void main(String[] args) {
     
-            LoginForm loginForm = new LoginForm();
-            loginForm.initialize();
-        }
+}
 
-    }
