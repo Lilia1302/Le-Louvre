@@ -49,6 +49,9 @@ public class loginView extends JFrame {
         /*Create the button */
         JButton btnLogin = new JButton("Login");
         btnLogin.setFont(mainFont);
+        btnLogin.setBackground(Color.orange);
+        btnLogin.setOpaque(true);
+        btnLogin.setBorderPainted(false);
         btnLogin.setPreferredSize(new Dimension(400,80));
 
         btnLogin.addActionListener(new ActionListener(){
