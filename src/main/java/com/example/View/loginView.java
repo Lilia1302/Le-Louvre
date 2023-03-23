@@ -4,8 +4,8 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import com.example.Form.LoginForm;
 import com.example.Model.Artiste;
-import com.example.Model.LoginForm;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

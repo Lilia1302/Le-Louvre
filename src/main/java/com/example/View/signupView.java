@@ -3,14 +3,11 @@ package com.example.View;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
+import com.example.Form.SignupForm;
 import com.example.Model.Artiste;
-import com.example.Model.LoginForm;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import com.example.Model.SignupForm;
 
 public class signupView extends JFrame {
     

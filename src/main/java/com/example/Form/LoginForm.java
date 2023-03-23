@@ -1,8 +1,10 @@
-package com.example.Model;
+package com.example.Form;
 
 import java.sql.*;
 import javax.swing.*;
 
+import com.example.Model.Artiste;
+import com.example.Model.DBConnection;
 import com.example.View.loginView;
 
 public class LoginForm {  
