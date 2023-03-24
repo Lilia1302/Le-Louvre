@@ -44,7 +44,6 @@ public class SignupForm extends JFrame {
                 password = resultSet.getString("password");
                 artiste = new Artiste(firstName, lastName, username, image, email, telNumber, address, password);
             }
-
             stm.close();
             conn.close();
 

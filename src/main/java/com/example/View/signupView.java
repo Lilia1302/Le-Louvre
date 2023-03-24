@@ -124,27 +124,81 @@ public class SignupView extends JFrame {
         });
 
         JPanel formPanel = new JPanel();
-        lbSignupForm.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
+        lbSignupForm.setFont(new Font("Trebuchet MS", Font.BOLD, 40));
 
-        formPanel.setLayout(new GridLayout(0,1,0,0));
+        formPanel.setLayout(new GridBagLayout());
         formPanel.setBorder(BorderFactory.createEmptyBorder(30, 50, 30, 50));
-        formPanel.add(lbSignupForm);
-        formPanel.add(lbFirstName);
-        formPanel.add(tfFirstName);
-        formPanel.add(lbLastName);
-        formPanel.add(tfLastName);
-        formPanel.add(lbUsername);
-        formPanel.add(tfUsername);
-        formPanel.add(lbEmail);
-        formPanel.add(tfEmail);
-        formPanel.add(lbAddress);
-        formPanel.add(tfAddress);
-        formPanel.add(lbTelNumber);
-        formPanel.add(tfTelNumber);
-        formPanel.add(lbPassword);
-        formPanel.add(pfPassword);
-        formPanel.add(lbConfirmPassword);
-        formPanel.add(pfConfirmPassword);
+        
+        GridBagConstraints gbcForm = new GridBagConstraints();
+        gbcForm.insets = new Insets(5, 5, 5, 5);
+        
+        // Première colonne
+        gbcForm.gridx = 0;
+        gbcForm.gridwidth = 2;
+        gbcForm.gridy = 0;
+        formPanel.add(lbSignupForm, gbcForm);
+        
+        gbcForm.gridwidth = 1;
+        gbcForm.anchor = GridBagConstraints.EAST;
+
+        gbcForm.gridy = 1;
+        formPanel.add(lbFirstName, gbcForm);
+        
+        gbcForm.gridy = 2;
+        formPanel.add(lbLastName, gbcForm);
+        
+        gbcForm.gridy = 3;
+        formPanel.add(lbUsername, gbcForm);
+        
+        gbcForm.gridy = 4;
+        formPanel.add(lbEmail, gbcForm);
+        
+        gbcForm.gridy = 5;
+        formPanel.add(lbAddress, gbcForm);
+        
+        gbcForm.gridy = 6;
+        formPanel.add(lbTelNumber, gbcForm);
+        
+        gbcForm.gridy = 7;
+        formPanel.add(lbPassword, gbcForm);
+        
+        gbcForm.gridy = 8;
+        formPanel.add(lbConfirmPassword, gbcForm);
+        
+        // Deuxième colonne
+        gbcForm.anchor = GridBagConstraints.WEST;
+        gbcForm.gridx = 1;
+        
+        gbcForm.gridy = 1;
+        formPanel.add(tfFirstName, gbcForm);
+        tfFirstName.setPreferredSize(new Dimension(300,60));
+        
+        gbcForm.gridy = 2;
+        formPanel.add(tfLastName, gbcForm);
+        tfLastName.setPreferredSize(new Dimension(300,60));
+
+        gbcForm.gridy = 3;
+        formPanel.add(tfUsername, gbcForm);
+        tfUsername.setPreferredSize(new Dimension(300,60));
+
+        gbcForm.gridy = 4;
+        formPanel.add(tfEmail, gbcForm);
+        tfEmail.setPreferredSize(new Dimension(300,60));
+
+        gbcForm.gridy = 5;
+        formPanel.add(tfAddress, gbcForm);
+        tfAddress.setPreferredSize(new Dimension(300,60));
+        gbcForm.gridy = 6;
+        formPanel.add(tfTelNumber, gbcForm);
+        tfTelNumber.setPreferredSize(new Dimension(300,60));
+
+        gbcForm.gridy = 7;
+        formPanel.add(pfPassword, gbcForm);
+        pfPassword.setPreferredSize(new Dimension(300,60));
+
+        gbcForm.gridy = 8;
+        formPanel.add(pfConfirmPassword, gbcForm);
+        pfConfirmPassword.setPreferredSize(new Dimension(300,60));
 
         add(formPanel, BorderLayout.NORTH);
 
@@ -158,8 +212,6 @@ public class SignupView extends JFrame {
                 LoginView lgview = new LoginView();
                 lgview.initialize();
                 lgview.setVisible(true);
-                
-
             }
         });
 
@@ -192,7 +244,7 @@ public class SignupView extends JFrame {
         setTitle("Sign up");
         setSize(480, 720);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new Dimension(400, 1000));
+        setMinimumSize(new Dimension(600, 930));
         setLocationRelativeTo(null);
         setVisible(true);
     }
