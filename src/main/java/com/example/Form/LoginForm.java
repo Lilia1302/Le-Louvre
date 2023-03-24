@@ -19,7 +19,7 @@ public class LoginForm {
            conn= dbConnection.init(conn);
             // Connected to database successfully...
             Statement stm = conn.createStatement();
-            String sql = "SELECT * FROM artiste WHERE email='"+email+"' AND password='"+password+"'";
+            String sql = "SELECT * FROM Artist WHERE email='"+email+"' AND password='"+password+"'";
             ResultSet resultSet = stm.executeQuery(sql);
 
             if (resultSet.next()) {

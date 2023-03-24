@@ -9,9 +9,8 @@ import com.example.Model.Artiste;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import com.example.Form.LoginForm;
+import com.example.ActionListener.LoginButtonListener;
 import com.example.Form.SignupForm;
-import com.example.View.LoginView;
 
 public class SignupView extends JFrame {
     
@@ -203,17 +202,10 @@ public class SignupView extends JFrame {
         add(formPanel, BorderLayout.NORTH);
 
         JLabel lbRedirectionSignIn = new JLabel("You already have an account ?");
-        JButton btnRedirectionSignIn = new JButton("Sign in");
+        JButton btnRedirectionSignIn = new JButton("Login");
         btnRedirectionSignIn.setPreferredSize(new Dimension(100,50));
 
-        btnRedirectionSignIn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                LoginView lgview = new LoginView();
-                lgview.initialize();
-                lgview.setVisible(true);
-            }
-        });
+        btnRedirectionSignIn.addActionListener(new LoginButtonListener(this));
 
         JPanel buttonsPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();

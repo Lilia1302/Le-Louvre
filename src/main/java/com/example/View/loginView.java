@@ -1,14 +1,16 @@
 package com.example.View;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import com.example.Model.Artiste;
+import com.example.ActionListener.SignupButtonListener;
 import com.example.Form.LoginForm;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class LoginView extends JFrame {
     protected static final Component LoginForm = null;
@@ -79,14 +81,7 @@ public class LoginView extends JFrame {
         JButton btnRedirectionSignup = new JButton("Sign up");
         btnRedirectionSignup.setPreferredSize(new Dimension(100,50));
 
-        btnRedirectionSignup.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                SignupView signupView = new SignupView();
-                signupView.initialize();
-                signupView.setVisible(true);
-            }
-        });
+        btnRedirectionSignup.addActionListener(new SignupButtonListener(this));
 
         JPanel buttonsPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
