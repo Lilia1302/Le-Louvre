@@ -1,14 +1,15 @@
 package com.example.View;
 import javax.swing.*;
 
-import com.example.Form.SignupForm;
+import com.example.ActionListeners.InscriptionButtonListener;
 import com.example.View.BackgroundImages.BGIHomePage;
+
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class HomePageView extends JFrame implements ActionListener {
+public class HomePageView extends JFrame{
     public HomePageView() {
 
         super("Page d'accueil - Le Louvre");
@@ -22,7 +23,7 @@ public class HomePageView extends JFrame implements ActionListener {
         navBar.setPreferredSize(navBarSize);
 
         // Create buttons
-        JButton inscriptionBtn = new JButton("Connexion");
+        final JButton inscriptionBtn = new JButton("Inscription");
         inscriptionBtn.setForeground(Color.BLACK);
         JButton galerieBtn = new JButton("Galerie");
         galerieBtn.setForeground(Color.BLACK);
@@ -30,16 +31,13 @@ public class HomePageView extends JFrame implements ActionListener {
         evenementsBtn.setForeground(Color.BLACK);
 
         // Add action listeners
-        inscriptionBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new HomePageView().setVisible(false);
-                signupView suView = new signupView();
-                suView.setVisible(true);
-            }
-        });
-        galerieBtn.addActionListener(this);
-        evenementsBtn.addActionListener(this);
+        HomePageView homePageView = (HomePageView) SwingUtilities.getWindowAncestor(inscriptionBtn);
+        InscriptionButtonListener inscriptionButtonListener = new InscriptionButtonListener(homePageView);
+        inscriptionBtn.addActionListener(inscriptionButtonListener);
+
+
+        //galerieBtn.addActionListener(this);
+        //evenementsBtn.addActionListener(this);
 
         // Add buttons to the navbar
         navBar.add(inscriptionBtn);
@@ -77,9 +75,4 @@ public class HomePageView extends JFrame implements ActionListener {
         });
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
-    }
 }
