@@ -19,18 +19,19 @@ public class SignupForm extends JFrame {
             dbConnection = new DBConnection();
             conn= dbConnection.init(conn);
              // Connected to database successfully...
-
+    
             Statement stm = conn.createStatement();
-
-            String sql = "INSERT INTO Artist(firstName, lastName, username, image, email, address, telNumber, password) VALUES ('" + firstName + "','" + lastName + "','" + username + "','image','" + email + "','" + address +"','" + telNumber + "','" + password +"')";
-
+            
+            String sql = "INSERT INTO artiste(firstName, lastName, username, image, email, address, telNumber, password) VALUES ('" + firstName + "','" + lastName + "','" + username + "','image','" + email + "','" + address +"','" + telNumber + "','" + password +"')";
+          
             int result = stm.executeUpdate(sql);
+            
 
 			if (result == 1) {
                 JOptionPane.showMessageDialog(null, "Your account was successfully created.");
 			}
 
-            String sql2 = "SELECT * FROM Artist where username='" + username + "'";
+            String sql2 = "SELECT * FROM artiste where username='" + username + "'";
 
             ResultSet resultSet = stm.executeQuery(sql2);
 

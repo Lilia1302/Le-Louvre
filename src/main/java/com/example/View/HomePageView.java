@@ -31,9 +31,7 @@ public class HomePageView extends JFrame{
         evenementsBtn.setForeground(Color.BLACK);
 
         // Add action listeners
-        HomePageView homePageView = (HomePageView) SwingUtilities.getWindowAncestor(inscriptionBtn);
-        InscriptionButtonListener inscriptionButtonListener = new InscriptionButtonListener(homePageView);
-        inscriptionBtn.addActionListener(inscriptionButtonListener);
+        inscriptionBtn.addActionListener(new InscriptionButtonListener(this));
 
 
         //galerieBtn.addActionListener(this);
