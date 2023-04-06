@@ -3,8 +3,8 @@ package com.example.Controller;
 import com.example.Form.SignupForm;
 import com.example.Interface.ISignupController;
 import com.example.Interface.ISignupView;
-import com.example.Model.Artiste;
 import com.example.Model.DatabaseUtil;
+import com.example.View.LoginView;
 import com.example.View.SignupView;
 
 public class SignupController implements ISignupController {
@@ -45,8 +45,13 @@ public class SignupController implements ISignupController {
 
     @Override
     public void setView(ISignupView view) {
-        this.signupView = signupView;
         this.signupView.setController(this);
+    }
+
+    public void redirectToLogin() {
+        LoginView loginView = new LoginView();
+        loginView.display();
+        signupView.setVisible(false);
     }
 }
 

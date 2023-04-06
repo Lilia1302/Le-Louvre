@@ -1,7 +1,5 @@
 package com.example.Interface;
 
-import java.awt.event.ActionListener;
-
 import com.example.Controller.LoginController;
 
 public interface ILoginView {
@@ -12,6 +10,5 @@ public interface ILoginView {
     void showSuccessMessage(String message);
     void setController(LoginController controller);
     void clearFields();
-    
     
 }

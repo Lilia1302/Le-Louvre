@@ -2,8 +2,6 @@ package com.example.Model;
 
 import java.sql.*;
 
-import javax.swing.*;
-
 import com.example.Interface.IDatabaseUtil;
 
 public class DatabaseUtil implements IDatabaseUtil {

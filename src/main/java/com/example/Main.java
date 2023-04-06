@@ -1,7 +1,5 @@
 package com.example;
 
-import javax.swing.*;
-
 import com.example.Controller.LoginController;
 import com.example.Model.DatabaseUtil;
 import com.example.View.LoginView;
@@ -13,13 +11,13 @@ public class Main {
         DatabaseUtil dataUtils = new DatabaseUtil();
 
         // Création de l'objet SignupView
-        LoginView loginView= new LoginView();
+        LoginView loginView = new LoginView();
 
         // Création de l'objet SignupController
         LoginController loginController = new LoginController(loginView, dataUtils);
 
         // Affichage de la vue
-        //loginView.display();
+        //signupView.display();
     }
 }
 

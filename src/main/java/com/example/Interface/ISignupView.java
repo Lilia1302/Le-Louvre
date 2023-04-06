@@ -10,5 +10,5 @@ public interface ISignupView {
     void setController(SignupController controller);
     void display();
     void close();
-    }
+}
     
