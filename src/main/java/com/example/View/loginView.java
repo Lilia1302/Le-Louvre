@@ -6,19 +6,24 @@ import javax.swing.border.EmptyBorder;
 
 import com.example.ActionListeners.SignupButtonListener;
 import com.example.Form.LoginForm;
+import com.example.Interface.ILoginController;
+import com.example.Interface.ILoginView;
 import com.example.Model.Artiste;
+import com.example.Controller.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LoginView extends JFrame {
+public class LoginView extends JFrame implements ILoginView {
 
-    protected static final Component LoginForm = null;
     private final Font mainFont = new Font("Avenir", Font.BOLD, 18);
-    JTextField tfEmail;
-    JPasswordField pfPassword;
+    private JTextField tfEmail;
+    private JPasswordField pfPassword;
+    private LoginController controller;
 
     public LoginView() {
+        this.tfEmail = new JTextField();
+        this.pfPassword = new JPasswordField();
         initialize();
     }
 
@@ -31,14 +36,14 @@ public class LoginView extends JFrame {
         JLabel lbLoginEmail = new JLabel("Email", SwingConstants.CENTER);
         lbLoginEmail.setFont(mainFont);
 
-        tfEmail = new JTextField();
-        tfEmail.setFont(mainFont);
+      
+        this.tfEmail.setFont(mainFont);
 
         JLabel lbLoginPassword = new JLabel("Password", SwingConstants.CENTER);
         lbLoginPassword.setFont(mainFont);
 
-        pfPassword = new JPasswordField();
-        pfPassword.setFont(mainFont);
+        
+        this.pfPassword.setFont(mainFont);
 
         JPanel formPanel = new JPanel();
         lbLoginForm.setFont(new Font("Trebuchet MS", Font.BOLD, 40));
@@ -47,9 +52,9 @@ public class LoginView extends JFrame {
         formPanel.setBorder(BorderFactory.createEmptyBorder(30, 50, 30, 50));
         formPanel.add(lbLoginForm);
         formPanel.add(lbLoginEmail);
-        formPanel.add(tfEmail);
+        formPanel.add(this.tfEmail);
         formPanel.add(lbLoginPassword);
-        formPanel.add(pfPassword);
+        formPanel.add(this.pfPassword);
 
         /*Create the button */
         JButton btnLogin = new JButton("Login");
@@ -60,24 +65,11 @@ public class LoginView extends JFrame {
         btnLogin.setPreferredSize(new Dimension(400,80));
 
         btnLogin.addActionListener(new ActionListener(){
-            @Override
+            @Override 
             public void actionPerformed(ActionEvent e) {
                 String email = tfEmail.getText();
                 String password = String.valueOf(pfPassword.getPassword());
-                LoginForm loginForm = new LoginForm();
-                Artiste artiste = loginForm.getAuthentificatedUser(email, password);
-
-                if (artiste != null){
-                    MainFrame mainFrame = new MainFrame();
-                    mainFrame.init(artiste);
-                    dispose();
-                }
-                else {
-                    JOptionPane.showMessageDialog(LoginForm,
-                    "Invalid email or password",
-                    "Try again",
-                    JOptionPane.ERROR_MESSAGE);
-                }
+                controller.loginButtonClicked(email, password);
             }
         });
 
@@ -85,7 +77,12 @@ public class LoginView extends JFrame {
         JButton btnRedirectionSignup = new JButton("Sign up");
         btnRedirectionSignup.setPreferredSize(new Dimension(100,50));
 
-        //btnRedirectionSignup.addActionListener(new SignupButtonListener(this));
+        /*btnRedirectionSignup.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.redirectToSignup();
+            }
+        });*/
 
         JPanel buttonsPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -121,10 +118,39 @@ public class LoginView extends JFrame {
         setVisible(true);
     }
 
-
-    public static void main(String[] args) {
-        new LoginView();
+    @Override
+    public void setController(LoginController controller) {
+        this.controller = controller;
     }
-    
+
+    @Override
+    public String getPassword() {
+        return new String(pfPassword.getPassword());
+    }
+
+    @Override
+    public void showError(String message) {
+        JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    @Override
+    public void showSuccessMessage(String message) {
+        JOptionPane.showMessageDialog(this, message, "Success", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    @Override
+    public void clearFields() {
+        tfEmail.setText("");
+        pfPassword.setText("");
+    }
+
+
+@Override
+    public void display() {
+        // Afficher la vue
+        setVisible(true);
+    }
 }
+    
+
 

@@ -2,9 +2,10 @@ package com.example;
 
 import javax.swing.*;
 
-import com.example.Controller.SignupController;
+import com.example.Controller.LoginController;
 import com.example.Model.DatabaseUtil;
-import com.example.View.SignupView;
+import com.example.View.LoginView;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -12,13 +13,13 @@ public class Main {
         DatabaseUtil dataUtils = new DatabaseUtil();
 
         // Création de l'objet SignupView
-        SignupView signupView = new SignupView();
+        LoginView loginView= new LoginView();
 
         // Création de l'objet SignupController
-        SignupController signupController = new SignupController(signupView, dataUtils);
+        LoginController loginController = new LoginController(loginView, dataUtils);
 
         // Affichage de la vue
-        signupView.display();
+        //loginView.display();
     }
 }
 

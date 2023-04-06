@@ -33,9 +33,22 @@ public class DatabaseUtil implements IDatabaseUtil {
     }
 
     @Override
-    public boolean userExists(String username) {
+    public boolean userExists(String email, String password) {
         // Code pour vérifier si un utilisateur existe déjà dans la base de données
+        try {
+            Connection conn = dbConnection.init(null);
+            Statement stm = conn.createStatement();
+            String sql = "SELECT * FROM artiste WHERE email='"+email+"' AND password='"+password+"'";
+            ResultSet resultSet = stm.executeQuery(sql);
+
+            if (resultSet.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to add user to database: " + e.getMessage());
+        }
         return false;
+        
     }
 
     @Override

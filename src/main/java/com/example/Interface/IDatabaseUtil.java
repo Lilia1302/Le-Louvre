@@ -4,7 +4,9 @@ public interface IDatabaseUtil {
 
     boolean addUser(String firstName, String lastName, String username, String password, String email, String address, String telNumber);
 
-    boolean userExists(String username);
+    boolean userExists(String email,String password);
 
     boolean emailExists(String email);
+
+
 }
