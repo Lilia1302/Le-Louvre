@@ -1,9 +1,9 @@
 package com.example.Controller;
 
 import com.example.Form.SignupForm;
-import com.example.Interface.IDatabaseUtil;
 import com.example.Interface.ISignupController;
 import com.example.Interface.ISignupView;
+import com.example.Model.Artiste;
 import com.example.Model.DatabaseUtil;
 import com.example.View.SignupView;
 
@@ -41,7 +41,6 @@ public class SignupController implements ISignupController {
         String address = signupForm.getAddress();
         String telNumber = signupForm.getTelNumber();
         signupButtonClicked(firstName, lastName, username, password, email, address, telNumber);
-
     }
 
     @Override

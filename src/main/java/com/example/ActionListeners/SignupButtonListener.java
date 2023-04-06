@@ -2,13 +2,14 @@ package com.example.ActionListeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import com.example.View.HomePageView;
-import com.example.View.signupView;
 
-public class InscriptionButtonListener implements ActionListener {
+import com.example.View.HomePageView;
+import com.example.View.SignupView;
+
+public class SignupButtonListener implements ActionListener {
     private final HomePageView homePageView;
 
-    public InscriptionButtonListener(HomePageView homePageView) {
+    public SignupButtonListener(HomePageView homePageView) {
         this.homePageView = homePageView;
     }
 
@@ -16,8 +17,7 @@ public class InscriptionButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         homePageView.setVisible(false);
 
-        signupView suView = new signupView();
-        suView.initialize();
+        SignupView suView = new SignupView();
 
         homePageView.setContentPane(suView);
         

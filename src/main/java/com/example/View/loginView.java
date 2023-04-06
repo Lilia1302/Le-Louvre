@@ -4,18 +4,23 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import com.example.ActionListeners.SignupButtonListener;
 import com.example.Form.LoginForm;
 import com.example.Model.Artiste;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class loginView extends JFrame {
+public class LoginView extends JFrame {
+
     protected static final Component LoginForm = null;
     private final Font mainFont = new Font("Avenir", Font.BOLD, 18);
     JTextField tfEmail;
     JPasswordField pfPassword;
 
+    public LoginView() {
+        initialize();
+    }
 
     public void initialize() {
         /*Create the form */
@@ -76,20 +81,11 @@ public class loginView extends JFrame {
             }
         });
 
-        JLabel lbRedirectionSignIn = new JLabel("You don't have an account ?");
-        JButton btnRedirectionSignIn = new JButton("Sign up");
-        btnRedirectionSignIn.setPreferredSize(new Dimension(100,50));
+        JLabel lbRedirectionSignup = new JLabel("You don't have an account ?");
+        JButton btnRedirectionSignup = new JButton("Sign up");
+        btnRedirectionSignup.setPreferredSize(new Dimension(100,50));
 
-        btnRedirectionSignIn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // rediriger vers la page d'inscription
-                // ici, on utilise JOptionPane.showInputDialog() comme exemple
-                String newEmail = JOptionPane.showInputDialog("Enter your username:");
-                String newPassword = JOptionPane.showInputDialog("Enter your password:");
-                System.out.println("New user registered: " + newEmail + ", " + newPassword);
-            }
-        });
+        //btnRedirectionSignup.addActionListener(new SignupButtonListener(this));
 
         JPanel buttonsPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -105,14 +101,14 @@ public class loginView extends JFrame {
         gbc.gridwidth = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(30, 50, 50, 0);
-        buttonsPanel.add(lbRedirectionSignIn, gbc);
+        buttonsPanel.add(lbRedirectionSignup, gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.gridwidth = 1;
         gbc.fill = GridBagConstraints.NONE;
         gbc.insets = new Insets(30, 0, 50, 50);
-        buttonsPanel.add(btnRedirectionSignIn, gbc);
+        buttonsPanel.add(btnRedirectionSignup, gbc);
 
         add(formPanel, BorderLayout.NORTH);
         add(buttonsPanel, BorderLayout.SOUTH);
@@ -123,6 +119,11 @@ public class loginView extends JFrame {
         setMinimumSize(new Dimension(400, 600));
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+
+
+    public static void main(String[] args) {
+        new LoginView();
     }
     
 }

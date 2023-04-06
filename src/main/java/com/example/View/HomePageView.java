@@ -1,13 +1,10 @@
 package com.example.View;
 import javax.swing.*;
 
-import com.example.ActionListeners.InscriptionButtonListener;
+import com.example.ActionListeners.SignupButtonListener;
 import com.example.View.BackgroundImages.BGIHomePage;
 
-
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class HomePageView extends JFrame{
     public HomePageView() {
@@ -31,8 +28,7 @@ public class HomePageView extends JFrame{
         evenementsBtn.setForeground(Color.BLACK);
 
         // Add action listeners
-        inscriptionBtn.addActionListener(new InscriptionButtonListener(this));
-
+        inscriptionBtn.addActionListener(new SignupButtonListener(this));
 
         //galerieBtn.addActionListener(this);
         //evenementsBtn.addActionListener(this);
@@ -42,9 +38,6 @@ public class HomePageView extends JFrame{
         navBar.add(galerieBtn);
         navBar.add(evenementsBtn);
 
-    
-        
-
         // Add image
         JPanel backgroundPanel = new JPanel(new BorderLayout());
         BGIHomePage backgroundImage = new BGIHomePage("C:/Users/ULTRABOOK DELL/OneDrive - UPEC/Bureau/demo/src/main/java/com/example/View/Images/Pyramide.jpeg");
@@ -53,7 +46,6 @@ public class HomePageView extends JFrame{
         root.add(navBar, BorderLayout.NORTH);
         root.add(backgroundPanel, BorderLayout.CENTER);
 
-       
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(root);
         setSize(800, 600);

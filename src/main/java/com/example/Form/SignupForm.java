@@ -1,11 +1,11 @@
 package com.example.Form;
 
-
 public class SignupForm {
     private String firstName;
     private String lastName;
     private String username;
     private String password;
+    private String image;
     private String email;
     private String address;
     private String telNumber;
@@ -15,6 +15,7 @@ public class SignupForm {
         this.lastName = lastName;
         this.username = username;
         this.password = password;
+        this.image = image;
         this.email = email;
         this.address = address;
         this.telNumber = telNumber;

@@ -5,7 +5,7 @@ import javax.swing.*;
 
 import com.example.Model.Artiste;
 import com.example.Model.DBConnection;
-import com.example.View.loginView;
+import com.example.View.LoginView;
 
 public class LoginForm {  
     Connection conn;
@@ -14,8 +14,6 @@ public class LoginForm {
     public Artiste getAuthentificatedUser(String email, String password){
         Artiste artiste = null;
 
-       
-         
         try {
             dbConnection = new DBConnection();
            conn= dbConnection.init(conn);
@@ -47,7 +45,7 @@ public class LoginForm {
         }
 
         public static void main(String[] args) {
-            loginView lgview = new loginView();
+            LoginView lgview = new LoginView();
             lgview.initialize();
         }
 
