@@ -67,7 +67,7 @@ public class LoginView extends JFrame implements ILoginView {
         btnLogin.addActionListener(new ActionListener(){
             @Override 
             public void actionPerformed(ActionEvent e) {
-                String email = tfEmail.getText();
+                String email = this.tfEmail.getText();
                 String password = String.valueOf(pfPassword.getPassword());
                 controller.loginButtonClicked(email, password);
             }
