@@ -1,33 +1,32 @@
 package com.example.Controller;
 
 import com.example.Form.LoginForm;
-import com.example.Interface.IDatabaseUtil;
 import com.example.Interface.ILoginController;
-import com.example.Interface.ILoginView;
 import com.example.Model.DatabaseUtil;
 import com.example.View.LoginView;
+import com.example.View.SignupView;
 
 public class LoginController implements ILoginController {
 
-        private LoginView view;
+        private LoginView loginView;
         private final DatabaseUtil databaseUtil;
 
     public LoginController(LoginView loginView, DatabaseUtil databaseUtil) {
-        this.view = loginView;
+        this.loginView = loginView;
         this.databaseUtil = databaseUtil;
-        this.view.setController(this);
+        this.loginView.setController(this);
     }
 
     @Override
     public void loginButtonClicked(String email,String password) {
         if (email.isEmpty() || password.isEmpty()) {
-            view.showError("Please enter both username and password.");
+            loginView.showError("Please enter both username and password.");
         } else {
             boolean success = databaseUtil.userExists(email,password);
             if (success) {
-                view.showSuccessMessage("User connected successfully!");
+                loginView.showSuccessMessage("User connected successfully!");
             } else {
-                view.showError("Failed to connect user.");
+                loginView.showError("Failed to connect user.");
             }
         }
     }
@@ -42,9 +41,15 @@ public class LoginController implements ILoginController {
     }
 
     @Override
-    public void setView(LoginView view) {
-        this.view = view;
-        this.view.setController(this);
+    public void setView(LoginView loginView) {
+        this.loginView = loginView;
+        this.loginView.setController(this);
+    }
+
+    public void redirectToSignup() {
+        SignupView signupView = new SignupView();
+        signupView.display();
+        loginView.setVisible(false);
     }
 }
     

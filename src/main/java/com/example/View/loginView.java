@@ -4,11 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import com.example.ActionListeners.SignupButtonListener;
-import com.example.Form.LoginForm;
-import com.example.Interface.ILoginController;
 import com.example.Interface.ILoginView;
-import com.example.Model.Artiste;
 import com.example.Controller.*;
 
 import java.awt.event.ActionEvent;
@@ -19,7 +15,7 @@ public class LoginView extends JFrame implements ILoginView {
     private final Font mainFont = new Font("Avenir", Font.BOLD, 18);
     private JTextField tfEmail;
     private JPasswordField pfPassword;
-    private LoginController controller;
+    private LoginController loginController;
 
     public LoginView() {
         this.tfEmail = new JTextField();
@@ -69,7 +65,7 @@ public class LoginView extends JFrame implements ILoginView {
             public void actionPerformed(ActionEvent e) {
                 String email = this.tfEmail.getText();
                 String password = String.valueOf(pfPassword.getPassword());
-                controller.loginButtonClicked(email, password);
+                loginController.loginButtonClicked(email, password);
             }
         });
 
@@ -77,12 +73,12 @@ public class LoginView extends JFrame implements ILoginView {
         JButton btnRedirectionSignup = new JButton("Sign up");
         btnRedirectionSignup.setPreferredSize(new Dimension(100,50));
 
-        /*btnRedirectionSignup.addActionListener(new ActionListener(){
+        btnRedirectionSignup.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.redirectToSignup();
+                loginController.redirectToSignup();
             }
-        });*/
+        });
 
         JPanel buttonsPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -119,8 +115,8 @@ public class LoginView extends JFrame implements ILoginView {
     }
 
     @Override
-    public void setController(LoginController controller) {
-        this.controller = controller;
+    public void setController(LoginController loginController) {
+        this.loginController = loginController;
     }
 
     @Override
@@ -144,8 +140,7 @@ public class LoginView extends JFrame implements ILoginView {
         pfPassword.setText("");
     }
 
-
-@Override
+    @Override
     public void display() {
         // Afficher la vue
         setVisible(true);

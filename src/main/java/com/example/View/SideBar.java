@@ -6,6 +6,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
+
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -37,7 +38,6 @@ public class SideBar extends JFrame{
         String[] buttons = new String[] {"Accueil", "Galerie", "Exposition", "", "", "Connexion", "Inscription", "Quitter"};
         NOMBRE_BOUTONS_MENU = buttons.length;
 
-
         for (int i = 0; i < NOMBRE_BOUTONS_MENU; i++) {
             JButton optionButton = new JButton();
             optionButton.setName("option" + (i+1) + "Button"); // donner un nom dynamique au bouton
@@ -48,6 +48,35 @@ public class SideBar extends JFrame{
             optionButton.setBorder(null); // supprimer le bord du bouton
             optionButton.setFont(mainFont);
             menuPanel.add(optionButton);
+
+            // Ajouter un écouteur d'événements au bouton en utilisant une expression lambda
+            optionButton.addActionListener(e -> {
+                JButton clickedButton = (JButton) e.getSource();
+                String buttonName = clickedButton.getName();
+                if ("option1Button".equals(buttonName)) {
+                    HomePageView homePageView = new HomePageView();
+                    homePageView.setVisible(true);
+                    this.setVisible(false);
+                } else if ("option2Button".equals(buttonName)) {
+                    /*GalerieView galerieView = new GalerieView();
+                    //galerieView.setVisible(true);
+                    this.setVisible(false);*/
+                } else if ("option3Button".equals(buttonName)) {
+                    /*ExpositionView expositionView = new ExpositionView();
+                    expositionView.setVisible(true);
+                    this.setVisible(false);*/
+                } else if ("option6Button".equals(buttonName)) {
+                    LoginView loginView = new LoginView();
+                    loginView.setVisible(true);
+                    this.setVisible(false);
+                } else if ("option7Button".equals(buttonName)) {
+                    SignupView signupView = new SignupView();
+                    signupView.setVisible(true);
+                    this.setVisible(false);
+                } else if ("option8Button".equals(buttonName)) {
+                    System.exit(0);
+                }
+            });
         }
 
         // création du contenu de la galerie

@@ -3,7 +3,7 @@ import java.sql.*;
 public class DBConnection {
     final String DB_URL ="jdbc:mysql://localhost:3306/le_louvre";
     final String USERNAME = "root";
-    final String PASSWORD = "";
+    final String PASSWORD = "root";
       
     public Connection init(Connection conn){
         try {
