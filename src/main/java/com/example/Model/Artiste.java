@@ -1,6 +1,7 @@
 package com.example.Model;
 
 public class Artiste {
+   
     private String lastName;
     private String firstName;
     private String username;

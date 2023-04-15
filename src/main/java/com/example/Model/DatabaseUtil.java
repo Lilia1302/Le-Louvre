@@ -6,6 +6,7 @@ import com.example.Interface.IDatabaseUtil;
 
 public class DatabaseUtil implements IDatabaseUtil {
     private DBConnection dbConnection;
+    private Artiste artiste;
 
     public DatabaseUtil() {
         dbConnection = new DBConnection();
@@ -54,4 +55,32 @@ public class DatabaseUtil implements IDatabaseUtil {
         // Code pour vérifier si une adresse email existe déjà dans la base de données
         return false;
     }
-}
+
+    @Override
+    public Artiste getCurrentUser(){
+            try {
+                Connection conn = dbConnection.init(null);
+                Statement stm = conn.createStatement();
+                String sql = "SELECT * FROM artiste WHERE firstName = " + artiste.getFirstName();
+                ResultSet resultSet = stm.executeQuery(sql);
+    
+                if (resultSet.next()) {
+                         artiste = new Artiste(
+                            resultSet.getString("firstName"),
+                            resultSet.getString("lastName"),
+                            resultSet.getString("username"),
+                            resultSet.getString("image"),
+                            resultSet.getString("email"),
+                            resultSet.getString("address"),
+                            resultSet.getString("telNumber"),
+                            resultSet.getString("password")
+                    );
+                    return artiste;
+                }
+            } catch (SQLException e) {
+                System.out.println("Failed to get current user from database: " + e.getMessage());
+            }
+            return null;
+        }
+    }
+
