@@ -60,6 +60,9 @@ public class LoginController implements ILoginController {
         SignupView signupView = new SignupView();
         signupView.display();
         this.loginView.setVisible(false);
+
+        this.loginView.setContentPane(signupView);
+        this.loginView.pack();
     }
 }
     

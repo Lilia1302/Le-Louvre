@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 import com.example.Controller.ProfilController;
-import com.example.Interface.IProfilController;
 import com.example.Interface.IProfilView;
 import com.example.Model.Artiste;
 
@@ -54,7 +53,6 @@ public class ProfilView extends JPanel implements IProfilView {
         this.controller = controller;
         displayProfilData(controller.getCurrentUser(emailField.getText()));
     }
-
 
     @Override
     public void displayProfilData(Artiste artiste) {

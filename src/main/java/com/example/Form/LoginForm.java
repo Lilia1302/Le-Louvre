@@ -1,7 +1,5 @@
 package com.example.Form;
 
-
-
 public class LoginForm {  
     String email;
     String password;
@@ -25,6 +23,4 @@ public class LoginForm {
     public void setEmail(String email) {
         this.email = email;
     }
-
-
-    }
+}

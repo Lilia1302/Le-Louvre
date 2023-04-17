@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.example.Controller.GalleryController;
 import com.example.Interface.IGalleryView;
-import com.example.Model.DatabaseUtil;
 import com.example.Model.Oeuvre;
 
 import java.awt.*;

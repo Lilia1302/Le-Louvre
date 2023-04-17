@@ -7,6 +7,7 @@ import com.example.Interface.IHomePageView;
 
 public class HomePageView extends JFrame implements IHomePageView{
 
+    private final Font mainFont = new Font("Avenir", Font.BOLD, 18);
     private JFrame frame;
     private JButton loginButton;
     private JButton signupButton;
@@ -17,22 +18,32 @@ public class HomePageView extends JFrame implements IHomePageView{
 
     private void initialize() {
         frame = new JFrame("Home Page");
+        frame.setLocationRelativeTo(null);
         frame.setBounds(100, 100, 450, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
 
         JLabel lblNewLabel = new JLabel("Bienvenue au Louvre");
+        lblNewLabel.setFont(mainFont);
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
         lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD, 20));
-        lblNewLabel.setBounds(6, 27, 438, 45);
+        lblNewLabel.setBounds(10, 27, 438, 45);
         frame.getContentPane().add(lblNewLabel);
 
         loginButton = new JButton("Se connecter");
-        loginButton.setBounds(95, 141, 117, 29);
+        loginButton.setFont(mainFont);
+        loginButton.setBounds(50, 141, 150, 50);
+        loginButton.setBackground(Color.orange);
+        loginButton.setOpaque(true);
+        loginButton.setBorderPainted(false);
         frame.getContentPane().add(loginButton);
 
         signupButton = new JButton("S'inscrire");
-        signupButton.setBounds(244, 141, 117, 29);
+        signupButton.setFont(mainFont);
+        signupButton.setBounds(244, 141, 150, 50);
+        signupButton.setBackground(Color.orange);
+        signupButton.setOpaque(true);
+        signupButton.setBorderPainted(false);
         frame.getContentPane().add(signupButton);
     }
 
