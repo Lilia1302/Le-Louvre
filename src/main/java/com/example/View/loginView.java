@@ -125,6 +125,12 @@ public class LoginView extends JFrame implements ILoginView {
     }
 
     @Override
+    public String getEmail() {
+        return tfEmail.getText();
+    }
+
+
+    @Override
     public void showError(String message) {
         JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);
     }

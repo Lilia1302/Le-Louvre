@@ -58,6 +58,19 @@ public class DatabaseUtil implements IDatabaseUtil {
         return false;
     }
 
+    public void initializeCurrentUser(String firstName, String lastName, String username, String email, String address, String telNumber, String password) {
+        
+        // Enregistrement de l'artiste dans la base de données
+        if (addUser(firstName, lastName, username, email, address, telNumber,password)) {
+            // Si l'enregistrement est réussi, on définit l'artiste comme l'utilisateur courant
+            this.artiste = artiste;
+        } else {
+            // Si l'enregistrement échoue, on affiche un message d'erreur
+            System.out.println("Erreur lors de l'enregistrement de l'utilisateur");
+        }
+    }
+    
+
     @Override
     public Artiste getCurrentUser(){
         try {
@@ -84,6 +97,11 @@ public class DatabaseUtil implements IDatabaseUtil {
         }
         return null;
     }
+    @Override
+    public void setCurrentUser(Artiste artiste) {
+        this.artiste = artiste;
+    }
+    
 
     @Override
     public boolean create(Oeuvre oeuvre) {

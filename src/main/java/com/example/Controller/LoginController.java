@@ -1,9 +1,10 @@
 package com.example.Controller;
 
-import com.example.Form.LoginForm;
 import com.example.Interface.ILoginController;
+import com.example.Model.Artiste;
 import com.example.Model.DatabaseUtil;
 import com.example.View.LoginView;
+import com.example.View.ProfilView;
 import com.example.View.SignupView;
 
 public class LoginController implements ILoginController {
@@ -24,7 +25,16 @@ public class LoginController implements ILoginController {
         } else {
             boolean success = databaseUtil.userExists(email,password);
             if (success) {
-                loginView.showSuccessMessage("User connected successfully!");
+                // Redirection vers la page de profil de l'utilisateur
+            Artiste currentUser = databaseUtil.getCurrentUser();
+            databaseUtil.setCurrentUser(currentUser);
+            ProfilView profilView = new ProfilView();
+            ProfilController profilController = new ProfilController(profilView, databaseUtil);
+            profilView.setController(profilController);
+            profilView.displayProfilData(currentUser);
+            
+            // Fermeture de la vue de connexion
+            loginView.dispose();
             } else {
                 loginView.showError("Failed to connect user.");
             }
@@ -32,10 +42,10 @@ public class LoginController implements ILoginController {
     }
 
     @Override
-    public void login(LoginForm loginForm) {
-        String password = loginForm.getPassword();
+    public void login() {
+        String password = loginView.getPassword();
        
-        String email = loginForm.getEmail();
+        String email = loginView.getEmail();
        
         loginButtonClicked(email, password);
     }
