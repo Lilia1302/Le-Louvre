@@ -52,7 +52,7 @@ public class ProfilView extends JPanel implements IProfilView {
     @Override
     public void setController(ProfilController controller) {
         this.controller = controller;
-        displayProfilData(controller.getCurrentUser());
+        displayProfilData(controller.getCurrentUser(emailField.getText()));
     }
 
 

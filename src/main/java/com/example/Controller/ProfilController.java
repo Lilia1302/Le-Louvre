@@ -16,7 +16,7 @@ public class ProfilController implements IProfilController {
     }
 
     @Override
-    public Artiste getCurrentUser() {
-        return databaseUtil.getCurrentUser();
+    public Artiste getCurrentUser(String email) {
+        return databaseUtil.getUserByEmail(email);
     }
 }

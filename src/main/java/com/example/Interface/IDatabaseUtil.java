@@ -8,6 +8,7 @@ public interface IDatabaseUtil {
     boolean addUser(String firstName, String lastName, String username, String password, String email, String address, String telNumber);
     boolean userExists(String email,String password);
     boolean emailExists(String email);
+    Artiste getUserByEmail(String email);
     void setCurrentUser(Artiste artiste);
     Artiste getCurrentUser();
     // oeuvres

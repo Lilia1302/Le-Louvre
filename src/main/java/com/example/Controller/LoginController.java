@@ -26,8 +26,8 @@ public class LoginController implements ILoginController {
             boolean success = databaseUtil.userExists(email,password);
             if (success) {
                 // Redirection vers la page de profil de l'utilisateur
-            Artiste currentUser = databaseUtil.getCurrentUser();
-            databaseUtil.setCurrentUser(currentUser);
+            Artiste currentUser = databaseUtil.getUserByEmail(email);
+           
             ProfilView profilView = new ProfilView();
             ProfilController profilController = new ProfilController(profilView, databaseUtil);
             profilView.setController(profilController);

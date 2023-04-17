@@ -53,22 +53,60 @@ public class DatabaseUtil implements IDatabaseUtil {
     }
 
     @Override
+    public Artiste getUserByEmail(String email) {
+        Artiste artiste = null;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+    
+        try {
+            conn = dbConnection.init(conn);
+            String sql = "SELECT * FROM artiste WHERE email = ?";
+            stm = conn.prepareStatement(sql);
+            stm.setString(1, email);
+            rs = stm.executeQuery();
+    
+            if (rs.next()) {
+                artiste = new Artiste(
+                    rs.getString("firstName"),
+                    rs.getString("lastName"),
+                    rs.getString("username"),
+                    rs.getString("image"),
+                    rs.getString("email"),
+                    rs.getString("address"),
+                    rs.getString("telNumber"),
+                    rs.getString("password")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println("Error executing SQL query: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stm != null) {
+                    stm.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error closing database resources: " + e.getMessage());
+            }
+        }
+    
+        return artiste;
+    }
+    
+
+    @Override
     public boolean emailExists(String email) {
         // Code pour vérifier si une adresse email existe déjà dans la base de données
         return false;
     }
 
-    public void initializeCurrentUser(String firstName, String lastName, String username, String email, String address, String telNumber, String password) {
-        
-        // Enregistrement de l'artiste dans la base de données
-        if (addUser(firstName, lastName, username, email, address, telNumber,password)) {
-            // Si l'enregistrement est réussi, on définit l'artiste comme l'utilisateur courant
-            this.artiste = artiste;
-        } else {
-            // Si l'enregistrement échoue, on affiche un message d'erreur
-            System.out.println("Erreur lors de l'enregistrement de l'utilisateur");
-        }
-    }
+    
     
 
     @Override
