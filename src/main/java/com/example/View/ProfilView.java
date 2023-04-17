@@ -73,4 +73,10 @@ public class ProfilView extends JPanel implements IProfilView {
         revalidate();
         repaint();
     }
+
+    @Override
+    public void addEditButtonListener(ActionListener listener) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'addEditButtonListener'");
+    }
 }

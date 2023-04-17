@@ -51,7 +51,7 @@ public class SignupController implements ISignupController {
     public void redirectToLogin() {
         LoginView loginView = new LoginView();
         loginView.display();
-        signupView.setVisible(false);
+        this.signupView.setVisible(false);
     }
 }
 

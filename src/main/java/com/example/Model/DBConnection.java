@@ -7,12 +7,11 @@ public class DBConnection {
       
     public Connection init(Connection conn){
         try {
-         conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
         
-        }catch(Exception e){
+        } catch(Exception e){
             System.out.println("Database connexion failed!");
         }
         return conn;
-        
     }
 }

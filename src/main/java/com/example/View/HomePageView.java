@@ -3,14 +3,9 @@ package com.example.View;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import com.example.ActionListeners.SignupButtonListener;
 import com.example.Interface.IHomePageView;
-import com.example.View.BackgroundImages.BGIHomePage;
-
-import java.awt.*;
 
 public class HomePageView extends JFrame implements IHomePageView{
-
 
     private JFrame frame;
     private JButton loginButton;

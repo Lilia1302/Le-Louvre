@@ -49,7 +49,7 @@ public class LoginController implements ILoginController {
     public void redirectToSignup() {
         SignupView signupView = new SignupView();
         signupView.display();
-        loginView.setVisible(false);
+        this.loginView.setVisible(false);
     }
 }
     
